@@ -39,6 +39,7 @@ function Square({ value, onClick, highlight }) {
 export default function Home() {
   const [squares, setSquares] = useState(Array(9).fill(null));
   const [xIsNext, setXIsNext] = useState(true);
+  const [nextStarter, setNextStarter] = useState(false);
   const [scores, setScores] = useState({ X: 0, O: 0, draws: 0 });
 
   const result = calculateWinner(squares);
@@ -64,11 +65,14 @@ export default function Home() {
 
   function resetBoard() {
     setSquares(Array(9).fill(null));
-    setXIsNext(true);
+    setXIsNext(nextStarter);
+    setNextStarter(!nextStarter);
   }
 
   function resetAll() {
-    resetBoard();
+    setSquares(Array(9).fill(null));
+    setXIsNext(true);
+    setNextStarter(false);
     setScores({ X: 0, O: 0, draws: 0 });
   }
 
